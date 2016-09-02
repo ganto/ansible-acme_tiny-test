@@ -34,8 +34,8 @@ test -d /etc/ssl/acme-tiny || sudo mkdir -p /etc/ssl/acme-tiny
 test -f /etc/ssl/acme-tiny/account.key || sudo touch /etc/ssl/acme-tiny/account.key
 
 # Use mock `acme-tiny` script to fake certificate signing process
-echo "Adjust path for mock 'acme-tiny' script:"
-export PATH="$(pwd)/travis/tests/ansible-acme_tiny/mock:$PATH"
+echo "Link mock 'acme-tiny' to default \$PATH:"
+sudo ln -s "$(pwd)/travis/tests/ansible-acme_tiny/mock/acme-tiny" /usr/local/bin
 which acme-tiny
 
 
