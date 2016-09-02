@@ -24,6 +24,23 @@ EOF
     echo
 }
 
+# Test documentation
+assert_docs() {
+    pip install --upgrade -q pip
+    pip install -q sphinx
+    pip install git+https://github.com/htgoebel/yaml2rst.git
+
+    cd "${TRAVIS_BUILD_DIR}/docs"
+    test -d _static || mkdir -p _static
+
+    yaml2rst ../defaults/main.yml defaults.rst --strip-regex '\s*(:?\[{3}|\]{3})\d?$'
+    sphinx-build -n -W -b html -d _build/doctrees . _build/html
+    local rc=$?
+
+    cd - > /dev/null
+    return ${rc}
+}
+
 
 setup_ansible
 
