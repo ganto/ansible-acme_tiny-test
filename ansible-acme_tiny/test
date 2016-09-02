@@ -1,0 +1,26 @@
+#!/bin/bash
+
+. "${ROLESPEC_LIB}/main"
+
+# Current stable Ansible release
+test_ansible_version="stable-2.1"
+
+# Scan common addresses
+ssh-keyscan localhost.localdomain >> ~/.ssh/known_hosts
+
+# Install our own SSH key on the account
+cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
+
+# Rolespec
+install_ansible ${test_ansible_version}
+ansible_plugins
+
+assert_playbook_runs
+
+# TODO:
+# role is not idempotent yet as every run is triggering a certificate request
+#assert_playbook_idempotent
+
+assert_docs
+
+# vim:ft=sh

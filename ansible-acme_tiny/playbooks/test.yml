@@ -1,0 +1,8 @@
+---
+
+- name: "Request and setup Let's encrypt SSL certificate"
+  hosts: 'placeholder_fqdn'
+  gather_facts: False
+
+  roles:
+    - role: 'ansible-acme_tiny'
