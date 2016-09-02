@@ -11,6 +11,12 @@ ssh-keyscan localhost.localdomain >> ~/.ssh/known_hosts
 # Install our own SSH key on the account
 cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 
+# Make sure Ansible can use 'become_user' with an unprivileged account
+# See: https://docs.ansible.com/ansible/become.html#becoming-an-unprivileged-user
+cat <<EOF >> "${ROLESPEC_ANSIBLE_CONFIG}"
+allow_world_readable_tmpfiles = true
+EOF
+
 # The Letsencrypt account key has to be provided by the user prior of running
 # the role. Let's fake it.
 test -d /etc/ssl/acme-tiny || sudo mkdir -p /etc/ssl/acme-tiny
