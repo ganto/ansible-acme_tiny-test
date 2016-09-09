@@ -66,11 +66,13 @@ assert_group acmetiny
 assert_user_in_group acmetiny acmetiny
 
 assert_path         /etc/ssl/acme-tiny/example.com/example.com.key
-assert_permission   /etc/ssl/acme-tiny/example.com/example.com.key 0640
+assert_permission   /etc/ssl/acme-tiny/example.com/example.com.key 640
 assert_path         /etc/ssl/acme-tiny/example.com/example.com.crq
 assert_path         /etc/ssl/acme-tiny/example.com/example.com.crt
 assert_path         /etc/ssl/acme-tiny/intermediate.crt
 assert_path         /etc/ssl/acme-tiny/ca.crt
+assert_path         /var/lib/acme-tiny/.ansible.cfg
+assert_path         /var/log/acme-tiny
 
 
 # TODO:
