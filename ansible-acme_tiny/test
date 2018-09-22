@@ -5,7 +5,7 @@
 
 
 # Current stable Ansible release
-test_ansible_version="stable-2.1"
+test_ansible_version="stable-2.6"
 
 
 setup_ansible() {
@@ -48,11 +48,11 @@ setup_ansible
 # The Letsencrypt account key has to be provided by the user prior of running
 # the role. Let's fake it.
 test -d /etc/ssl/acme-tiny || sudo mkdir -p /etc/ssl/acme-tiny
-test -f /etc/ssl/acme-tiny/account.key || sudo touch /etc/ssl/acme-tiny/account.key
+test -f /etc/ssl/acme-tiny/account.key || sudo openssl genrsa -out /etc/ssl/acme-tiny/account.key 1024
 
 # Use mock `acme-tiny` script to fake certificate signing process
 echo "Link mock 'acme-tiny' to default \$PATH:"
-sudo ln -s "$(pwd)/travis/tests/ansible-acme_tiny/mock/acme-tiny" /usr/local/bin
+sudo ln -s "$(pwd)/travis/tests/ansible-acme_tiny/mock/acme-tiny.py" /usr/local/bin/acme-tiny
 which acme-tiny
 
 
