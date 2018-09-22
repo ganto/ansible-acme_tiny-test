@@ -1,3 +1,0 @@
----
-# Make sure the travis user can read the private key
-acme_tiny__user_group: travis
