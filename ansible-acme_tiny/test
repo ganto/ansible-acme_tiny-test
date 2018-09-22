@@ -60,10 +60,10 @@ which acme-tiny
 # Rolespec
 #
 
-assert_playbook_runs
+assert_playbook_runs -vvv
 
-assert_group acmetiny
-assert_user_in_group acmetiny acmetiny
+assert_group travis
+assert_user_in_group acmetiny travis
 
 assert_path         /etc/ssl/acme-tiny/example.com/example.com.key
 assert_permission   /etc/ssl/acme-tiny/example.com/example.com.key 640
