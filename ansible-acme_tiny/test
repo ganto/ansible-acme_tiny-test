@@ -60,7 +60,7 @@ which acme-tiny
 # Rolespec
 #
 
-assert_playbook_runs
+assert_playbook_runs -vvv
 
 assert_group acmetiny
 assert_user_in_group acmetiny acmetiny
